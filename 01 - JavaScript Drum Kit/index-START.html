@@ -58,6 +58,24 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
+  window.addEventListener('keyup', event => {
+    const keys = document.querySelectorAll(".key");
+
+    keys.forEach((element) => {
+      if (event.keyCode == element.dataset.key ) {
+        element.classList.add("playing");
+        setTimeout(() => {
+          element.classList.remove("playing");
+        }, 50);
+        const audios = document.querySelectorAll("audio")
+        audios.forEach((audio) => {
+          if (audio.dataset.key === element.dataset.key) {
+            audio.play();
+          }
+        })
+      }
+    })
+  })
 
 </script>
 
