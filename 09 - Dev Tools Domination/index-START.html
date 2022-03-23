@@ -6,7 +6,7 @@
 </head>
 <body>
 
-  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+  <p class="paragraph" onClick="makeGreen()">×BREAK×DOWN×</p>
 
   <script>
     const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
@@ -18,29 +18,62 @@
     }
 
     // Regular
+    console.log('hello world');
 
     // Interpolated
+    console.log('I am %s string', '🎒');
 
     // Styled
+    console.log('%c I am some text', 'font-size: 50px; color: red;');
 
     // warning!
+    console.warn('noooooo');
+
 
     // Error :|
+    console.error('wtf')
 
     // Info
+    console.info("Hello world!");
 
     // Testing
+    const p = document.querySelector('p')
+    // console.log(p.classList.value);
+    console.assert(p.classList.contains('abcd'), 'that\'s wrong')
 
     // clearing
+    console.clear();
 
     // Viewing DOM Elements
+    console.log(p);
+    console.dir(p.innerHTML);
 
     // Grouping together
+    dogs.forEach(dog => {
+      console.groupCollapsed(`${dog.name}`)
+      console.log(`This is ${dog.name}`);
+      console.log(`${dog.name} is ${dog.age * 7} dog years old`);
+      console.groupEnd(`${dog.name}`)
+    })
 
     // counting
+    console.count('Max')
+    console.count('Steve')
+    console.count('Steve')
+    console.count('Steve')
+    console.count('Max')
 
     // timing
+    console.time('fetching data');
+    fetch('https://api.github.com/users/yigittuncel')
+      .then(data => data.json())
+      .then(data => {
+        console.timeEnd('fetching data');
+        console.log(data);
+      });
 
+    // table
+    console.table(dogs)
   </script>
 </body>
 </html>
