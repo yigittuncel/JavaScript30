@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="shortcut icon" href="#">
+
   <meta charset="UTF-8">
   <title>JS Reference VS Copy</title>
 </head>
@@ -8,13 +10,34 @@
 
   <script>
     // start with strings, numbers and booleans
+    let age = 100;
+    let age2 = age;
+    console.log(age, age2);
+    age = 200;
+    console.log(age, age2);
+
+    let name = 'max'
+    let name2 = name;
+
+    console.log(name, name2);
+    name = 'steve'
+    console.log(name, name2);
+
+    let a = true;
+    let b = a;
+
+    console.log(a, b);
+    a = false;
+    console.log(a, b);
 
     // Let's say we have an array
     const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
 
     // and we want to make a copy of it.
+    const team = players
 
     // You might think we can just do something like this:
+    team[3]  = 'Steve'
 
     // however what happens when we update that array?
 
@@ -27,10 +50,16 @@
     // So, how do we fix this? We take a copy instead!
 
     // one way
+    const team2 = players.slice();
 
     // or create a new array and concat the old one in
+    const team3 = [].concat(players)
 
     // or use the new ES6 Spread
+    const team4 = [...players]
+
+    const team5 = Array.from(players)
+
 
     // now when we update it, the original one isn't changed
 
@@ -39,17 +68,27 @@
     // with Objects
     const person = {
       name: 'Wes Bos',
-      age: 80
+      age: 80,
+      social: {
+        twitter: 'wes',
+        facebook: 'weswes'
+      }
     };
 
     // and think we make a copy:
 
     // how do we take a copy instead?
+    const max = Object.assign({}, person)
 
     // We will hopefully soon see the object ...spread
+    const john = {...person}
+    john.name = 'john'
 
     // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
-
+    const bob = JSON.parse(JSON.stringify(person));
+    bob.name = 'bob'
+    bob.social.twitter = 'sdsdsdsdsdsdsds'
+    console.log(person, bob);
   </script>
 
 </body>
